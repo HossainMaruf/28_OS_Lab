@@ -15,6 +15,11 @@ void Person::DisplayInfo(Person p) {
   cout << "Mother's Name: " << p.mName << endl;
 }
 
+bool comp(Person p1, Person p2) {
+  if(p1.id < p2.id) return true;
+  else return false;
+}
+
 int main() {
   Person p[3];
 
@@ -28,6 +33,19 @@ int main() {
     cout << "Enter mother's name " << "#"<<i+1<<": " ;
     cin>>p[i].mName;
   }
+
+  // sort
+  // for(int i=0; i<3; i++) {
+  //   for(int j=i+1; j<3; j++) {
+  //     if(p[i].id > p[j].id) {
+  //       Person temp = p[i];
+  //       p[i] = p[j];
+  //       p[j] = temp;
+  //     }
+  //   }
+  // }
+
+  sort(p, p+3, comp);
 
   // Display
   for(int i=0; i<3; i++) {
