@@ -1,22 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+struct Person {
   int id;
   string name, fName, mName;
+};
+
+int main() {
+  struct Person p;
   cout << "Enter id: ";
-  cin>>id;
+  cin>>p.id;
   cout << "Enter name: ";
-  cin>>name;
+  cin>>p.name;
   cout << "Enter father's name: ";
-  cin>>fName;
+  cin>>p.fName;
   cout << "Enter mother's name: ";
-  cin>>mName;
-  // Display Information
-  cout << "ID: " << id << endl;
-  cout << "Name: " << name << endl;
-  cout << "Father's Name: " << fName << endl;
-  cout << "Mother's Name: " << mName << endl;
+  cin>>p.mName;
+
+  // // Display Information
+  cout << "ID: " << p.id << endl;
+  cout << "Name: " << p.name << endl;
+  cout << "Father's Name: " << p.fName << endl;
+  cout << "Mother's Name: " << p.mName << endl;
 
   return 0;
 }
