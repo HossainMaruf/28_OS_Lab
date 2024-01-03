@@ -16,18 +16,23 @@ void Person::DisplayInfo(Person p) {
 }
 
 int main() {
-  Person p;
-  cout << "Enter id: ";
-  cin>>p.id;
-  cout << "Enter name: ";
-  cin>>p.name;
-  cout << "Enter father's name: ";
-  cin>>p.fName;
-  cout << "Enter mother's name: ";
-  cin>>p.mName;
+  Person p[3];
+
+  for(int i=0; i<3; i++) {
+    cout << "Enter id " << "#"<<i+1<<": " ;
+    cin>>p[i].id;
+    cout << "Enter name " << "#"<<i+1<<": " ;
+    cin>>p[i].name;
+    cout << "Enter father's name " << "#"<<i+1<<": " ;
+    cin>>p[i].fName;
+    cout << "Enter mother's name " << "#"<<i+1<<": " ;
+    cin>>p[i].mName;
+  }
 
   // Display
-  p.DisplayInfo(p);
+  for(int i=0; i<3; i++) {
+    p[i].DisplayInfo(p[i]);
+  }
 
   return 0;
 }
