@@ -51,8 +51,15 @@ int main() {
 
         } else {
             // rest of the process
-            p[i].st = p[i-1].ct;
-            p[i].ct = p[i-1].ct + p[i].bt;
+            if(p[i-1].ct < p[i].at) {
+                p[i].st = p[i].at;
+            } else p[i].st = p[i-1].ct;
+
+            if(p[i-1].ct < p[i].at) {
+                p[i].ct = p[i-1].ct + p[i].bt + (p[i].at - p[i-1].ct);
+            } else {
+                p[i].ct = p[i-1].ct + p[i].bt;
+            }
         }
         p[i].wt = p[i].st - p[i].at;
         p[i].tt = p[i].wt + p[i].bt;
