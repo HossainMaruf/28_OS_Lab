@@ -6,6 +6,11 @@ struct Process {
     bool pushed = false;
 };
 
+bool comp(struct Process* p1, struct Process* p2) {
+    if(p1->at < p2->at) return true;
+    else return false;
+}
+
 void printProcess(struct Process p[], int n) {
     for(int i=0; i<n; i++) {
        cout << p[i].id << " " << p[i].at << " " << p[i].bt << endl;
@@ -43,7 +48,7 @@ int main() {
     vector<struct Process*> ready_queue;
     ready_queue.push_back(&p[minIndex]);
     p[minIndex].pushed = true;
-    int t = p[minIndex].at, count = 0, TQ = 5;
+    int t = p[minIndex].at, count = 0, TQ = 3;
     while(count != n) {
         struct Process* selected =  ready_queue.front();
         cout << selected->id << endl;
@@ -66,12 +71,20 @@ int main() {
             t = selected->ct;
             selected->rt = selected->rt - TQ;
             // recently arrived process
+            vector<struct Process*> temp;
             for(int i=0; i<n; i++) {
                 if((p[i].pushed == false) && (p[i].at <= t)) {
-                    ready_queue.push_back(&p[i]);
+                    // ready_queue.push_back(&p[i]);
+                    temp.push_back(&p[i]);
                     p[i].pushed = true;
                 }
             }
+            sort(temp.begin(), temp.end(), comp);
+            for(int i=0; i<temp.size(); i++) {
+                ready_queue.push_back(temp[i]);
+            }
+            temp.clear();
+            // recently arrived process end
             if(selected->rt > 0) {
                 // have remaining time
                 ready_queue.push_back(selected);
